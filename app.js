@@ -1,16 +1,20 @@
-const drawingContainer = document.querySelector(".drawingContainer");
-createGrid(32);
+
 let mouseDown = false;
 let penColor = "#353535";
 
-const createGridButton = document.querySelector(".createGridButton");
-createGridButton.addEventListener("click", getNewGridInput);
+/* const createGridButton = document.querySelector(".createGridButton"); */
+const colorPicker = document.querySelector("#penColor");
+const drawingContainer = document.querySelector(".drawingContainer");
+const gridSizeInput = document.querySelector("#gridSizeInput");
 
+/* createGridButton.addEventListener("click", getNewGridInput); */
 drawingContainer.addEventListener("mousedown", () => mouseDown = true);
 drawingContainer.addEventListener("mouseup", () => mouseDown = false);
-
-const colorPicker = document.querySelector("#penColor");
 colorPicker.addEventListener("change", () => penColor = colorPicker.value);
+gridSizeInput.addEventListener("change", () => createGrid(gridSizeInput.value));
+
+createGrid(32);
+
 
 function createGrid(numberOfTiles) {
     /* Remove pre existing drawing area */

@@ -29,5 +29,5 @@ main {
 }
 
 .drawingTile:hover {
-  background: grey;
+  background: grey !important;
 }
