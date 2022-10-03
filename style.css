@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+#drawingArea {
+    width: 600px;
+    height: 600px;
+    background: #dbdbdb;
+    display: grid;
+ 
+}
+
+.drawingTile {
+  
+}
