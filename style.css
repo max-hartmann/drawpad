@@ -10,6 +10,7 @@ html, body {
 main {
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -24,8 +25,9 @@ main {
 
 .drawingTile {
     user-select: none;
+    cursor: none;
 }
 
 .drawingTile:hover {
-  
+  background: grey;
 }

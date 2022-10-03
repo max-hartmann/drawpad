@@ -1,9 +1,16 @@
 const drawingContainer = document.querySelector(".drawingContainer");
 createGrid(32);
 let mouseDown = false;
+let penColor = "#353535";
+
+const createGridButton = document.querySelector(".createGridButton");
+createGridButton.addEventListener("click", getNewGridInput);
 
 drawingContainer.addEventListener("mousedown", () => mouseDown = true);
 drawingContainer.addEventListener("mouseup", () => mouseDown = false);
+
+const colorPicker = document.querySelector("#penColor");
+colorPicker.addEventListener("change", () => penColor = colorPicker.value);
 
 function createGrid(numberOfTiles) {
     /* Remove pre existing drawing area */
@@ -17,7 +24,8 @@ function createGrid(numberOfTiles) {
     for(let i=0; i<numberOfTiles*numberOfTiles;i++) {
         const newTile = document.createElement("div");
         newTile.classList.add("drawingTile");
-        newTile.addEventListener('mouseenter', drawOnTile);
+        newTile.addEventListener('mouseover', drawOnTile);
+        newTile.addEventListener('mousedown', drawOnTile);
         drawingArea.append(newTile);
     }
 
@@ -25,7 +33,17 @@ function createGrid(numberOfTiles) {
 
 }
 
-function drawOnTile() {
-    if(mouseDown)
-    this.setAttribute("style", "background: black");
+function drawOnTile(e) {
+    if(mouseDown || e.type === "mousedown") this.setAttribute("style", `background: ${penColor}`);
+}
+
+function getNewGridInput() {
+    let input = prompt("How many tiles per row and column do you want?");
+
+    while(!input || input > 100 || input <= 0 || isNaN(input))
+    {
+        input = prompt("Invalid input. How many tiles per row and column do you want?");
+    }
+
+    createGrid(input);
 }
